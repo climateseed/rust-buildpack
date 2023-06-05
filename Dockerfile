@@ -31,4 +31,4 @@ RUN set -eux; \
 RUN cargo install cargo-watch
 RUN cargo install grcov
 RUN cargo install diesel_cli --no-default-features --features postgres
-RUN cargo install sccache --no-default-features
+RUN cargo install cargo-watch
