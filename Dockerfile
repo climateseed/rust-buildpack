@@ -6,7 +6,7 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     TZ="Europe/P±aris" \
     CARGO_TERM_COLOR=always
 
-RUN apt-get -y update && apt-get -y install --no-install-recommends libclang-dev && rm -rf /var/lib/apt/lists/*
+RUN apt-get -y update && apt-get -y install --no-install-recommends git libssl-dev libpq-dev pkg-config ssh libclang-dev && rm -rf /var/lib/apt/lists/*
 
 RUN set -eux; \
     dpkgArch="$(dpkg --print-architecture)"; \
