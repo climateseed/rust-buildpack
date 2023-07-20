@@ -6,7 +6,15 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     TZ="Europe/P±aris" \
     CARGO_TERM_COLOR=always
 
-RUN apt-get -y update && apt-get -y install --no-install-recommends git libssl-dev libpq-dev pkg-config ssh libclang-dev && rm -rf /var/lib/apt/lists/*
+RUN apt-get -y update && apt-get -y install --no-install-recommends \
+    git \
+    libssl-dev \
+    libpq-dev \
+    pkg-config \
+    ssh \
+    libclang-dev \
+    musl-tools \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN set -eux; \
     dpkgArch="$(dpkg --print-architecture)"; \
@@ -28,8 +36,10 @@ RUN set -eux; \
     cargo --version; \
     rustc --version;
 
+RUN rustup target add x86_64-unknown-linux-musl
+
 RUN cargo install cargo-watch
 RUN cargo install grcov
-RUN cargo install diesel_cli --no-default-features --features postgres
+RUN cargo install diesel_cli --no-default-features --features postgres --target x86_64-unknown-linux-musl
 RUN cargo install cargo-watch
 RUN cargo install cargo-chef
