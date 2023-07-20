@@ -1,4 +1,4 @@
-FROM buildpack-deps:latest
+FROM buildpack-deps:bullseye
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
     PATH=/usr/local/cargo/bin:$PATH \
